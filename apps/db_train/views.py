@@ -20,11 +20,11 @@ class TrainView(View):
         self.answer7 = Author.objects.get(age=max_age['max_age'])  # TODO Какой автор имеет наибольший возраст?
         self.answer8 = Author.objects.filter(phone_number__isnull=False).count()  # TODO Сколько авторов указали свой номер телефона?
         self.answer9 = Author.objects.filter(age__lte=25)  # TODO Какие авторы имеют возраст младше 25 лет?
-        count_entry = Author.objects.annotate(entry_count=Count('entries')).values('id', 'entry_count').order_by('id')
-        # for idx, value in enumerate(count_entry):
+        count_entry = Author.objects.annotate(count=Count('entries'))
+        # data = [ {'count': obj['entry_count'], } for obj in count_entry]
         #     a_id = value['id']
-        #     e_count = value['entry_count']
-        self.answer10 = None  # TODO Сколько статей написано каждым автором?
+        #     e_count = value['count']
+        self.answer10 = count_entry  # TODO Сколько статей написано каждым автором?
 
         context = {f'answer{index}': self.__dict__[f'answer{index}'] for index in range(1, 11)}
 
