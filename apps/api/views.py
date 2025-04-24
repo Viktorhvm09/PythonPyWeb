@@ -127,7 +127,7 @@ class AuthorViewSet(ModelViewSet):
             queryset = queryset.filter(name__contains=name)
         return queryset
 
-    http_method_names = ['get', 'post']
+    # http_method_names = ['get', 'post']
 
     @action(detail=True, methods=['get', 'post'])
     def my_action(self, request, pk=None):
