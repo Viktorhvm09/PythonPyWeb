@@ -583,6 +583,11 @@ python manage.py migrate
 вручную, для этого в `Python Console` пропишем
 
 ```python
+import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+django.setup()
+
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
