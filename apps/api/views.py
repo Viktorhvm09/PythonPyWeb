@@ -106,10 +106,10 @@ class AuthorGenericAPIView(GenericAPIView, RetrieveModelMixin, ListModelMixin, C
                            DestroyModelMixin):
     queryset = Author.objects.all()
     serializer_class = AuthorModelSerializer
-    # permission_classes = [CustomPermission]
-    permission_classes = [permissions.IsAuthenticated]
-    # authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [CustomPermission]
     authentication_classes = [JWTAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [authentication.TokenAuthentication]
 
     def get(self, request, *args, **kwargs):
         if kwargs.get(self.lookup_field):
